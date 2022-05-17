@@ -1,0 +1,3 @@
+#!/bin/bash
+
+java -cp :"lib/*":bin/ mathbot.Main $1 $2

@@ -1,0 +1,10 @@
+bin/
+*.DS_Store
+*.class
+*.swp
+*.swo
+.classpath
+.project
+discordMathBot.log
+eq.png
+userData.dat
