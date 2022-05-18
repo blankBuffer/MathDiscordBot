@@ -22,7 +22,7 @@ import cas.primitive.*;
 
 public class Main {
 	static HashMap<String,CasInfo> userDefinitions = null;
-	static String token = null,owner = null;
+	static String token = null;
 	static JDA jda = null;
 	static Color RESULT_COLOR = Color.white;
 	static int FONT_RESOLUTION = 48;
@@ -112,20 +112,21 @@ public class Main {
 			}
 		}
 	};
+	
+	final static String loginFileName = "login.txt";
 	public static void login(String[] args){
-		if(args.length != 2) {
-			System.out.println("no parameters, opening loginDetails.txt");
+		if(args.length != 1) {
+			System.out.println("no parameters, opening "+loginFileName);
 			try {
-				Scanner s = new Scanner(new File("loginDetails.txt"));
-				owner = s.next();
+				Scanner s = new Scanner(new File(loginFileName));
 				token = s.next();
+				s.close();
 			} catch (FileNotFoundException e1) {
 				System.out.println("no login file");
 				System.exit(-1);
 			}
 		}else {
-			owner = args[0];
-			token = args[1];
+			token = args[0];
 		}
 	}
 	
@@ -148,7 +149,7 @@ public class Main {
 				return;
 			}
 			
-			if(start.equals("bot")) {
+			if(start.equals("bot") ) {
 				
 				String user = event.getAuthor().toString();
 				if(!userDefinitions.containsKey(user)) {
@@ -163,7 +164,7 @@ public class Main {
 				logger.log(user);
 				logger.log("request:"+request);
 				
-				if(request.contains("STOP") && event.getAuthor().getId().equals(owner)) {
+				if(request.contains("STOP")) {
 					end();
 					return;
 				}
@@ -178,8 +179,6 @@ public class Main {
 				}catch(Exception e) {
 					channel.sendMessage("`error! "+e.getMessage()+"`").queue();
 					logger.log(e.getMessage());
-					File errorImg = new File("err.jpg");
-					channel.sendFile(errorImg).queue();
 					e.printStackTrace();
 					return;
 				}
@@ -213,12 +212,6 @@ public class Main {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-				}
-				
-				try {
-					Runtime.getRuntime().exec("afplay /System/Library/Sounds/Glass.aiff");
-				} catch (IOException e) {
-					System.out.println("ding!");
 				}
 				
 				long delta = System.nanoTime()-oldTime;
