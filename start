@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -cp :"lib/*":bin/ mathbot.Main $1
+java -cp :"libs/*":bin/ mathbot.Main $1

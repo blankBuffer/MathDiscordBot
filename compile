@@ -1,3 +1,3 @@
 #!/bin/bash
 
-javac -cp :"lib/*" src/mathbot/*.java -d bin
+javac -cp :"libs/*" src/mathbot/*.java -d bin
