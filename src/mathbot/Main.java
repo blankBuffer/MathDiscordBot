@@ -29,7 +29,7 @@ public class Main {
 	
 	public static void main(String[] args){
 		System.out.println(UI.CRED);
-		cas.Rule.loadRules();
+		cas.Rule.loadCompileSimplifyRules();
 		
 		login(args);
 		try
