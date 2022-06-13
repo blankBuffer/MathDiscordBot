@@ -143,13 +143,13 @@ public class Main {
 			MessageChannel channel = event.getChannel();
 			
 			String start = null;
-			if(request.length()>3) {
-				start = request.substring(0, 3).toLowerCase();
+			if(request.length()>4) {
+				start = request.substring(0, 4).toLowerCase();
 			}else {
 				return;
 			}
 			
-			if(start.equals("bot") ) {
+			if(start.equals("bot ") ) {
 				
 				String user = event.getAuthor().toString();
 				if(!userDefinitions.containsKey(user)) {
